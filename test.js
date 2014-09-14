@@ -21,12 +21,16 @@ describe('quiet', function(){
   before(function(){
     mkdirp.sync(r('./tmp/'))
     var songsJson = JSON.stringify(_songsData)
-    fs.writeFileSync('./tmp/songs.json', songsJson)
+    fs.writeFileSync(r('./tmp/songs.json'), songsJson)
   })
 
   var songsDb = quiet(r('./tmp/songs.json'))
   songsDb.on('error', function(err){
     console.error(err)
+  })
+
+  it('resolves path', function(){
+    assert.ok(songsDb.file === r('./tmp/songs.json'))
   })
 
   it('loads file', function(done){

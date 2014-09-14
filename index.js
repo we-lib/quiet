@@ -1,6 +1,7 @@
 var fs = require('fs')
 var events = require('events')
 var util = require('util')
+var path = require('path')
 
 module.exports = function(file){
   return new Db(file)
@@ -9,6 +10,7 @@ module.exports = function(file){
 util.inherits(Db, events.EventEmitter)
 
 function Db(file){
+  file = path.resolve(process.cwd(), file)
   this.file = file
   this.data = null
 }
@@ -22,8 +24,8 @@ Db.prototype.load = function(){
 }
 Db.prototype.save = function(){
   var self = this
-  var str = JSON.stringify(this.data)
-  fs.writeFile(this.file, str, function(err){
+  var json = JSON.stringify(this.data)
+  fs.writeFile(this.file, json, function(err){
     if (err) return self.emit('error', err)
     self.emit('save')
   })
