@@ -1,6 +1,6 @@
 {
   "name": "quiet",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Loads and saves json data from/to fs",
   "repository": "git@github.com:fritx/quiet.git",
   "scripts": {

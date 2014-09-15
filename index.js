@@ -10,6 +10,7 @@ module.exports = function(file){
 util.inherits(Db, events.EventEmitter)
 
 function Db(file){
+  events.EventEmitter.call(this)
   file = path.resolve(process.cwd(), file)
   this.file = file
   this.data = null
